@@ -1,0 +1,19 @@
+.list-heading{
+	padding: 8px 0px 4px 20px;
+	margin: 0px;
+	font-size: 24px;
+	font-weight: normal;
+	background-color: hsla(0, 0%, 0%, 0.1);
+}
+
+#databases{
+    background-color: hsla(0, 0%, 0%, 0.15);
+}
+
+#tables{
+    background-color: hsla(0, 0%, 0%, 0.10);
+}
+
+#results{
+    background-color: hsla(0, 0%, 0%, 0.05);
+}
