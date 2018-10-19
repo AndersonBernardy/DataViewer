@@ -1,6 +1,6 @@
 
 function fetchSidebar(){
-	$.post("http://localhost/DataViewer/src/manager/facade.php", 
+	$.post("http://localhost/DataViewer/DataViewer/src/manager/facade.php", 
 			{'service': 'getMenu'},
 			 function(data, status){
 				readySidebar(data, status);
@@ -10,7 +10,6 @@ function fetchSidebar(){
 
 function readySidebar(data, status){
 	try{
-		
 		console.log(status);
 		console.log(data);
 		var menuList = JSON.parse(data);

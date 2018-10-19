@@ -9,42 +9,57 @@ class Facade{
     private $parameters;
     
     public function __construct(){
-        $this->parameters = FactoryServiceParameters::getParameters();
+//         $this->parameters = FactoryServiceParameters::getParameters();
     }
     
     public function consultDatabases(/*$user*/){
         $manager = new UCConsultDatabasesManager();
-        return $manager->consultDatabases($this->parameters['user']);
-//         return $manager->consultDatabases('admin');
+//         return $manager->consultDatabases($this->parameters['user']);
+        return $manager->consultDatabases('admin');
     }
     
     public function consultTables(/*$user, $database*/){
         $manager = new UCConsultTablesManager();
-        return $manager->consultTables($this->parameters['user'], $this->parameters['database']);
-//         return $manager->consultTables('guest', 'dataview');
+//         return $manager->consultTables($this->parameters['user'], $this->parameters['database']);
+        return $manager->consultTables('admin', 'data_viewer');
     }
     
     public function consultData(/*$user, $database, $table*/){
         $manager = new UCConsultTablesManager();
-        return $manager->consultTables($this->parameters['user'], 
-            $this->parameters['database'], $this->parameters['database']);
-//         return $manager->consultData('guest', 'dataview', 'data');
+//         return $manager->consultTables($this->parameters['user'], 
+//             $this->parameters['database'], $this->parameters['database']);
+        return $manager->consultData('admin', 'data_viewer', 'databas');
     }
     
     public function getMenu(){
         $menu = array();
-        $menu['Conta'] = "http://localhost/DataViewClient/html/account.php";
-        $menu['Bancos'] = "http://localhost/DataViewClient/html/databases.php";
+        $menu['Conta'] = "http:\\\\localhost\DataViewer\DataViewerClient\html\account.php";
+        $menu['Bancos'] = "http:\\\\localhost\DataViewer\DataViewerClient\html\databases.php";
         return $menu;
     }
+    
+    
     
 }
 
 try{
     $facade = new Facade();
+    $result = null;
+    
+    $service = $_POST['service'];
+//     $service = "getMenu";
+    if($service === 'getMenu'){
+        $result = $facade->getMenu();
+    } else if($service === 'consultData'){
+        $result = $facade->consult();
+    } else if($service === 'consultDatabases'){
+        $result = $facade->consultDatabases();
+    } else if($service === 'consultTables'){
+        $result = $facade->consultTables();
+    }
+    
     //tratar
-    $result = $facade->$_POST['service']();
-//     $result = $facade->$_POST('service')();
+    
     $json = json_encode($result);
     
     

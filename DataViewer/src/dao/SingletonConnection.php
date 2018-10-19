@@ -36,7 +36,7 @@
                 "servertype"=>"mysql",
                 "host"=>"localhost",
                 "port"=>"3306",
-                "dbname"=>"dataView",
+                "dbname"=>"data_viewer",
                 "charset"=>"utf8",
                 "username"=>"root",
                 "password"=>""

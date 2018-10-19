@@ -4,35 +4,35 @@ require_once(__DIR__ . "\DAO.php");
 
 class DAODatabase extends DAO{
     
-    private function parseResultSet($resultSet, $database){
+    private function parseResultSet($resultSet){
         $row = $resultSet['0'];
         $connectionParameters = array();
-        $connectionParameters['servertype'] = $row['serverType'];
-        $connectionParameters['servername'] = $row['serverName'];
+        $connectionParameters['servertype'] = $row['driver'];
+        $connectionParameters['servername'] = $row['servername'];
         $connectionParameters['port'] = $row['port'];
         $connectionParameters['charset'] = "utf8";
-        $connectionParameters['username'] = $row['user'];
+        $connectionParameters['username'] = $row['username'];
         $connectionParameters['password'] = $row['password'];
-        $connectionParameters['dbname'] = $database;
+        $connectionParameters['dbname'] = $row['dbname'];
         return $connectionParameters;
     }
     
-    public function getConnectionParameters($username, $database){
-        $sql = "SELECT data.name, 
-                    servertype.serverType,
-                    server.serverName, 
+    public function getConnectionParameters($username, $dbname){
+        $sql = "SELECT databas.dbname, 
+                    servertype.driver,
+                    server.servername, 
                     server.port,
-                    server.user,
+                    server.username,
                     server.password
-                FROM data, permission, server, serverType, user 
-                WHERE user.login = ?
-                    && data.name = ?
-                    && user.idUser = permission.idUser
-                    && permission.idDatabase = data.idDatabase
-                    && data.idServer = server.idServer
-                    && server.idServerType = servertype.idServerType;";
-        $resultSet = $this->query($sql, array($username, $database));
-        $connectionParameters = $this->parseResultSet($resultSet, $database);
+                FROM databas, permission, server, servertype, user 
+                WHERE user.username = ?
+                    && databas.dbname = ?
+                    && user.id_user = permission.id_user
+                    && permission.id_database = databas.id_database
+                    && databas.id_server = server.id_server
+                    && server.id_servertype = servertype.id_servertype;";
+        $resultSet = $this->query($sql, array($username, $dbname));
+        $connectionParameters = $this->parseResultSet($resultSet);
         return $connectionParameters;
     }
     

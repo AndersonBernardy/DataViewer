@@ -14,7 +14,7 @@
         
         <script>
 			function redirect(){
-			    window.location.assign("http://localhost/DataViewClient/html/main.php");
+			    window.location.assign("http://localhost/DataViewer/DataViewerClient/html/main.php");
 			}
         </script>
 

@@ -7,8 +7,8 @@ class DAOPermission extends DAO{
     
     private function parseRow($row){
         $permission = new Permission();
-        $permission->setDatabaseName($row['name']);
-        $permission->setPermissionType(new PermissionType($row['permissionType']));
+        $permission->setDatabaseName($row['dbname']);
+        $permission->setPermissionType(new PermissionType($row['privilege']));
         return $permission;
     }
     
@@ -22,12 +22,12 @@ class DAOPermission extends DAO{
     }
     
     public function selectByUsername($username){
-        $sql = "SELECT data.name, permissionType.permissionType 
-                    FROM user, data, permission, permissionType
-                    WHERE user.login = ?
-                    && permission.idUser = user.idUser
-                    && permission.idDatabase = data.idDatabase
-                    && permission.idPermissionType = permissionType.idPermissionType;";
+        $sql = "SELECT databas.dbname, privilege.privilege 
+                    FROM user, databas, permission, privilege
+                    WHERE user.username = ?
+                    && permission.id_user = user.id_user
+                    && permission.id_database = databas.id_database
+                    && permission.id_privilege = privilege.id_privilege;";
         $resultSet = $this->query($sql, array($username));
         $permissionArray = $this->parseResultSet($resultSet);
         return $permissionArray;

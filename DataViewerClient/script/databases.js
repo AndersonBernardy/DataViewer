@@ -1,5 +1,5 @@
 function fetchDatabases(){
-	$.post("http://localhost/DataViewer/src/manager/facade.php", 
+	$.post("http://localhost/DataViewer/DataViewer/src/manager/facade.php", 
 			{'service': 'consultDatabases',
 			 'user': 'admin',
 			 'database' : 'none',
@@ -14,6 +14,7 @@ function readyDatabases(data, status){
 	try{
 		
 		console.log(status);
+		console.log(data);
 		var databasesList = JSON.parse(data);
 		console.log(databasesList);
 		
@@ -33,7 +34,7 @@ function readyDatabases(data, status){
 }
 
 function fetchTables(tableName){
-	$.post("http://localhost/DataViewer/src/manager/facade.php", 
+	$.post("http://localhost/DataViewer/DataViewer/src/manager/facade.php", 
 			{'service': 'consultTables',
 			 'user': 'admin',
 			 'database' : 'dataview',
@@ -50,9 +51,9 @@ function readyTables(data, status){
 		var databasesList = JSON.parse(data);
 		console.log(databasesList);
 		$("#tables ul").html("");
-		for(var i=0; i<databasesList.length; i++){
-			$("#tables ul").append("<li><a>" + databasesList[i] + "</a></li>").on("click", );
-		}
+//		for(var i=0; i<databasesList.length; i++){
+//			$("#tables ul").append("<li><a>" + databasesList[i] + "</a></li>").on("click", );
+//		}
 		
 	} catch (exception) {
 		console.log(exception);
