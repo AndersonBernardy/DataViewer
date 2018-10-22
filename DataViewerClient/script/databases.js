@@ -37,7 +37,7 @@ function fetchTables(tableName){
 	$.post("http://localhost/DataViewer/DataViewer/src/manager/facade.php", 
 			{'service': 'consultTables',
 			 'user': 'admin',
-			 'database' : 'dataview',
+			 'database' : 'data_viewer',
 			 'table' : 'server'}, 
 			 function(data, status){
 				 readyTables(data, status);
@@ -51,9 +51,9 @@ function readyTables(data, status){
 		var databasesList = JSON.parse(data);
 		console.log(databasesList);
 		$("#tables ul").html("");
-//		for(var i=0; i<databasesList.length; i++){
-//			$("#tables ul").append("<li><a>" + databasesList[i] + "</a></li>").on("click", );
-//		}
+		for(var i=0; i<databasesList.length; i++){
+			$("#tables ul").append("<li><a>" + databasesList[i] + "</a></li>").on("click", );
+		}
 		
 	} catch (exception) {
 		console.log(exception);

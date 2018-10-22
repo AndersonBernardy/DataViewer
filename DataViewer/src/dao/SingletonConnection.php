@@ -1,6 +1,6 @@
 <?php
 
-    require_once(__DIR__ . "\FactoryConnection.php");
+    require_once(__DIR__ . "\ConnectionFactory.php");
 
     class SingletonConnection{
 
@@ -9,7 +9,7 @@
 
         private function __construct(){
             $credentials = $this->getCredentials();
-            $this->connection = FactoryConnection::createConnection(
+            $this->connection = ConnectionFactory::createConnection(
                 $credentials["servertype"],
                 $credentials["host"],
                 $credentials["port"],

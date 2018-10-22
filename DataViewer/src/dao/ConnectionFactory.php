@@ -1,6 +1,6 @@
 <?php
 
-class FactoryConnection{
+class ConnectionFactory{
         
     public static function createConnection($servertype, $servername, $port, $dbname, 
         $username, $password, $charset = "utf8"){

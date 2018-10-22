@@ -1,8 +1,7 @@
 <?php
 
 require_once (__DIR__ . "\..\util\FactoryServiceParameters.php");
-require_once (__DIR__ . "\UCConsultDatabasesManager.php");
-require_once (__DIR__ . "\UCConsultTablesManager.php");
+require_once (__DIR__ . "\DatabasesManager.php");
 
 class Facade{
     
@@ -13,22 +12,22 @@ class Facade{
     }
     
     public function consultDatabases(/*$user*/){
-        $manager = new UCConsultDatabasesManager();
+        $manager = new DatabasesManager();
 //         return $manager->consultDatabases($this->parameters['user']);
         return $manager->consultDatabases('admin');
     }
     
     public function consultTables(/*$user, $database*/){
-        $manager = new UCConsultTablesManager();
-//         return $manager->consultTables($this->parameters['user'], $this->parameters['database']);
-        return $manager->consultTables('admin', 'data_viewer');
+        $manager = new DatabasesManager();
+        return $manager->consultTables($this->parameters['user'], $this->parameters['database']);
+//         return $manager->consultTables('admin', 'data_viewer');
     }
     
     public function consultData(/*$user, $database, $table*/){
-        $manager = new UCConsultTablesManager();
-//         return $manager->consultTables($this->parameters['user'], 
-//             $this->parameters['database'], $this->parameters['database']);
-        return $manager->consultData('admin', 'data_viewer', 'databas');
+        $manager = new DatabasesManager();
+        return $manager->consultTables($this->parameters['user'], 
+            $this->parameters['database'], $this->parameters['database']);
+//         return $manager->consultData('admin', 'data_viewer', 'databas');
     }
     
     public function getMenu(){
@@ -46,8 +45,9 @@ try{
     $facade = new Facade();
     $result = null;
     
-    $service = $_POST['service'];
-//     $service = "getMenu";
+//     $service = $_POST['service'];
+    $service = 'consultDatabases';
+    
     if($service === 'getMenu'){
         $result = $facade->getMenu();
     } else if($service === 'consultData'){
@@ -58,10 +58,7 @@ try{
         $result = $facade->consultTables();
     }
     
-    //tratar
-    
     $json = json_encode($result);
-    
     
     if(json_last_error() === JSON_ERROR_NONE){
        echo $json;

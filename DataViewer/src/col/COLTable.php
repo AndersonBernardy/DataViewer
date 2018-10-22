@@ -1,7 +1,6 @@
 <?php
 
 require_once(__DIR__ . "\COLDatabase.php");
-require_once(__DIR__ . "\..\dao\FactoryConnection.php");
 require_once(__DIR__ . "\..\dao\DAOTable.php");
 
 class COLTable{

@@ -8,7 +8,7 @@ class DAOPermission extends DAO{
     private function parseRow($row){
         $permission = new Permission();
         $permission->setDatabaseName($row['dbname']);
-        $permission->setPermissionType(new PermissionType($row['privilege']));
+        $permission->setPrivilege(new Privilege($row['privilege']));
         return $permission;
     }
     

@@ -1,11 +1,11 @@
 <?php
 
-require_once(__DIR__ . "\PermissionType.php");
+require_once(__DIR__ . "\Privilege.php");
 
 class Permission implements JsonSerializable{
     
     private $databaseName;
-    private $permissionType;
+    private $privilege;
     
      /**
      * @return mixed
@@ -18,9 +18,9 @@ class Permission implements JsonSerializable{
     /**
      * @return mixed
      */
-    public function getPermissionType()
+    public function getPrivilege()
     {
-        return $this->permissionType;
+        return $this->privilege;
     }
 
     /**
@@ -34,9 +34,9 @@ class Permission implements JsonSerializable{
     /**
      * @param mixed $permissionType
      */
-    public function setPermissionType($permissionType)
+    public function setPrivilege($privilege)
     {
-        $this->permissionType = $permissionType;
+        $this->privilege = $privilege;
     }
 
     public function jsonSerialize(){
@@ -45,7 +45,7 @@ class Permission implements JsonSerializable{
     
     public function __toString(){
         $string = "<b>Database:</b> $this->databaseName, 
-                   $this->permissionType";
+                   $this->privilege";
         return $string;
     }
 
