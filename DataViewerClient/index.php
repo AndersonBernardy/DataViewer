@@ -28,7 +28,6 @@
 		</div>
 		<div class="container">
 			<h1>nav-bar</h1>
-			<a href="#!databases">Clica aqui</a>
 		</div>
 		<div data-ng-view></div>
 		<div class="container">

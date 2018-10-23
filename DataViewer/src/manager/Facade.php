@@ -25,8 +25,8 @@ class Facade{
     
     public function consultData(/*$user, $database, $table*/){
         $manager = new DatabasesManager();
-        return $manager->consultTables($this->parameters['user'], 
-            $this->parameters['database'], $this->parameters['database']);
+        return $manager->consultData($this->parameters['user'], 
+            $this->parameters['database'], $this->parameters['table']);
 //         return $manager->consultData('admin', 'data_viewer', 'databas');
     }
     
@@ -52,7 +52,7 @@ try{
     if($service === 'getMenu'){
         $result = $facade->getMenu();
     } else if($service === 'consultData'){
-        $result = $facade->consult();
+        $result = $facade->consultData();
     } else if($service === 'consultDatabases'){
         $result = $facade->consultDatabases();
     } else if($service === 'consultTables'){

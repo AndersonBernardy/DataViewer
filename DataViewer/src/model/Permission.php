@@ -1,13 +1,13 @@
 <?php
 
-require_once(__DIR__ . "\Privilege.php");
-
 class Permission implements JsonSerializable{
     
     private $databaseName;
-    private $privilege;
+    private $selectPrivilege;
+    private $insertPrivilege;
+    private $updatePrivilege;
     
-     /**
+    /**
      * @return mixed
      */
     public function getDatabaseName()
@@ -18,9 +18,25 @@ class Permission implements JsonSerializable{
     /**
      * @return mixed
      */
-    public function getPrivilege()
+    public function getSelectPrivilege()
     {
-        return $this->privilege;
+        return $this->selectPrivilege;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInsertPrivilege()
+    {
+        return $this->insertPrivilege;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatePrivilege()
+    {
+        return $this->updatePrivilege;
     }
 
     /**
@@ -32,11 +48,27 @@ class Permission implements JsonSerializable{
     }
 
     /**
-     * @param mixed $permissionType
+     * @param mixed $selectPrivilege
      */
-    public function setPrivilege($privilege)
+    public function setSelectPrivilege($selectPrivilege)
     {
-        $this->privilege = $privilege;
+        $this->selectPrivilege = $selectPrivilege;
+    }
+
+    /**
+     * @param mixed $insertPrivilege
+     */
+    public function setInsertPrivilege($insertPrivilege)
+    {
+        $this->insertPrivilege = $insertPrivilege;
+    }
+
+    /**
+     * @param mixed $updatePrivilege
+     */
+    public function setUpdatePrivilege($updatePrivilege)
+    {
+        $this->updatePrivilege = $updatePrivilege;
     }
 
     public function jsonSerialize(){
