@@ -10,6 +10,8 @@ ALTER TABLE `databas` ADD FOREIGN KEY (`id_server`) REFERENCES `server`(`id_serv
 CREATE TABLE `data_viewer`.`permission` ( `id_user` INT NOT NULL , `id_database` INT NOT NULL , `select_privilege` BOOLEAN NOT NULL DEFAULT FALSE , `insert_privilege` BOOLEAN NOT NULL DEFAULT FALSE , `update_privilege` BOOLEAN NOT NULL DEFAULT FALSE , PRIMARY KEY (`id_user`, `id_database`)) ENGINE = InnoDB;
 ALTER TABLE `permission` ADD FOREIGN KEY (`id_database`) REFERENCES `databas`(`id_database`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 ALTER TABLE `permission` ADD FOREIGN KEY (`id_user`) REFERENCES `user`(`id_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `permission` ADD `delete_privilege` BOOLEAN NOT NULL DEFAULT FALSE AFTER `update_privilege`;
+
 
 //CREATE TABLE `data_viewer`.`permission` ( `id_user` INT NOT NULL , `id_database` INT NOT NULL , `id_privilege` INT NOT NULL , PRIMARY KEY (`id_user`, `id_database`, `id_privilege`)) ENGINE = InnoDB;
 //CREATE TABLE `data_viewer`.`privilege` ( `id_privilege` INT NOT NULL AUTO_INCREMENT , `privilege` VARCHAR(32) NOT NULL , PRIMARY KEY (`id_privilege`), UNIQUE (`privilege`)) ENGINE = InnoDB;

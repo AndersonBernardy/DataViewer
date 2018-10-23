@@ -1,86 +1,124 @@
 <?php
 
-class Permission implements JsonSerializable{
-    
+class Permission implements JsonSerializable
+{
+
     private $databaseName;
     private $selectPrivilege;
     private $insertPrivilege;
     private $updatePrivilege;
-    
+    private $deletePrivilege;
+
     /**
-     * @return mixed
+     *
+     * @return string
      */
-    public function getDatabaseName()
+    public function getDatabaseName(): string
     {
         return $this->databaseName;
     }
 
     /**
-     * @return mixed
+     *
+     * @return bool
      */
-    public function getSelectPrivilege()
+    public function getSelectPrivilege(): bool
     {
         return $this->selectPrivilege;
     }
 
     /**
-     * @return mixed
+     *
+     * @return bool
      */
-    public function getInsertPrivilege()
+    public function getInsertPrivilege(): bool
     {
         return $this->insertPrivilege;
     }
 
     /**
-     * @return mixed
+     *
+     * @return bool
      */
-    public function getUpdatePrivilege()
+    public function getUpdatePrivilege(): bool
     {
         return $this->updatePrivilege;
     }
 
     /**
-     * @param mixed $databaseName
+     *
+     * @return bool
      */
-    public function setDatabaseName($databaseName)
+    public function getDeletePrivilege(): bool
+    {
+        return $this->deletePrivilege;
+    }
+
+    /**
+     *
+     * @param string $databaseName
+     */
+    public function setDatabaseName(string $databaseName)
     {
         $this->databaseName = $databaseName;
     }
 
     /**
-     * @param mixed $selectPrivilege
+     *
+     * @param bool $selectPrivilege
      */
-    public function setSelectPrivilege($selectPrivilege)
+    public function setSelectPrivilege(bool $selectPrivilege)
     {
         $this->selectPrivilege = $selectPrivilege;
     }
 
     /**
-     * @param mixed $insertPrivilege
+     *
+     * @param bool $insertPrivilege
      */
-    public function setInsertPrivilege($insertPrivilege)
+    public function setInsertPrivilege(bool $insertPrivilege)
     {
         $this->insertPrivilege = $insertPrivilege;
     }
 
     /**
-     * @param mixed $updatePrivilege
+     *
+     * @param bool $updatePrivilege
      */
-    public function setUpdatePrivilege($updatePrivilege)
+    public function setUpdatePrivilege(bool $updatePrivilege)
     {
         $this->updatePrivilege = $updatePrivilege;
     }
 
-    public function jsonSerialize(){
-        return get_object_vars($this);
-    }
-    
-    public function __toString(){
-        $string = "<b>Database:</b> $this->databaseName, 
-                   $this->privilege";
-        return $string;
+    /**
+     *
+     * @param bool $deletePrivilege
+     */
+    public function setDeletePrivilege(bool $deletePrivilege)
+    {
+        $this->deletePrivilege = $deletePrivilege;
     }
 
-    
+    /**
+     *
+     * {@inheritdoc}
+     * @see JsonSerializable::jsonSerialize()
+     */
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $string = "<b>Database:</b> $this->databaseName, <i>select:</i> $this->selectPrivilege, " 
+            . "<i>insert:</i> $this->insertPrivilege, <i>update:</i> $this->updatePrivilege, " 
+            . "<i>delete:</i> $this->deletePrivilege";
+        return $string;
+    }
     
 }
