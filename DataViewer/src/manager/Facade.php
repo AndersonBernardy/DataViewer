@@ -8,13 +8,13 @@ class Facade{
     private $parameters;
     
     public function __construct(){
-//         $this->parameters = FactoryServiceParameters::getParameters();
+        $this->parameters = FactoryServiceParameters::getParameters();
     }
     
     public function consultDatabases(/*$user*/){
         $manager = new DatabasesManager();
-//         return $manager->consultDatabases($this->parameters['user']);
-        return $manager->consultDatabases('admin');
+        return $manager->consultDatabases($this->parameters['user']);
+//         return $manager->consultDatabases('admin');
     }
     
     public function consultTables(/*$user, $database*/){
@@ -42,11 +42,12 @@ class Facade{
 }
 
 try{
+    
     $facade = new Facade();
     $result = null;
     
-//     $service = $_POST['service'];
-    $service = 'consultDatabases';
+    $service = $_POST['service'];
+//     $service = 'consultDatabases';
     
     if($service === 'getMenu'){
         $result = $facade->getMenu();

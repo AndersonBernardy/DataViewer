@@ -1,5 +1,0 @@
-<?php
-
-auhsahduhausd
-asudhuahs
-uahsduash
