@@ -1,9 +1,10 @@
 <div data-ng-controller="databasesCtrl" class="container row">
+	
 	<div class="container btn-group-vertical btn-group-lg col-md-2">
 		<h3 style="text-align:center">Bancos</h3>
 		<button type="button" class="btn btn-info"
-			data-ng-click="consultTables(this.database.databaseName)"
-			data-ng-repeat="database in databaseArray">{{database.databaseName}}</button>
+			data-ng-click="consultTables(this.database.dbname)"
+			data-ng-repeat="database in databaseArray">{{database.dbname}}</button>
 	</div>
 	
 	<div class="container btn-group-vertical btn-group-lg col-md-2">

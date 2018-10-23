@@ -3,7 +3,7 @@
 class Permission implements JsonSerializable
 {
 
-    private $databaseName;
+    private $dbname;
     private $selectPrivilege;
     private $insertPrivilege;
     private $updatePrivilege;
@@ -13,9 +13,9 @@ class Permission implements JsonSerializable
      *
      * @return string
      */
-    public function getDatabaseName(): string
+    public function getDbname(): string
     {
-        return $this->databaseName;
+        return $this->dbname;
     }
 
     /**
@@ -58,9 +58,9 @@ class Permission implements JsonSerializable
      *
      * @param string $databaseName
      */
-    public function setDatabaseName(string $databaseName)
+    public function setDbname(string $dbname)
     {
-        $this->databaseName = $databaseName;
+        $this->dbname = $dbname;
     }
 
     /**
@@ -115,7 +115,7 @@ class Permission implements JsonSerializable
      */
     public function __toString()
     {
-        $string = "<b>Database:</b> $this->databaseName, <i>select:</i> $this->selectPrivilege, " 
+        $string = "<b>Database:</b> $this->dbname, <i>select:</i> $this->selectPrivilege, " 
             . "<i>insert:</i> $this->insertPrivilege, <i>update:</i> $this->updatePrivilege, " 
             . "<i>delete:</i> $this->deletePrivilege";
         return $string;

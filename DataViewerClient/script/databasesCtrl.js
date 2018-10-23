@@ -2,14 +2,14 @@ app.controller('databasesCtrl', function($scope, $http) {
 	
 	
 	$scope.user = 'admin';
-	
+	$scope.url = "http://localhost/DataViewer/DataViewer/src/manager/Manager.php";
 
 	$scope.consultDatabases = function(){
 
 		$scope.service = 'consultDatabases';
 		
 		$http({
-			url : "http://localhost/DataViewer/DataViewer/src/manager/Facade.php",
+			url : $scope.url,
 			method : "POST",
 			data: $.param({
 				service: $scope.service,
@@ -33,8 +33,10 @@ app.controller('databasesCtrl', function($scope, $http) {
 		$scope.service = 'consultTables';
 		$scope.database = database;
 		
+		console.log(database);
+		
 		$http({
-			url : "http://localhost/DataViewer/DataViewer/src/manager/Facade.php",
+			url : $scope.url,
 			method : "POST",
 			data: $.param({
 				service: $scope.service,
@@ -58,7 +60,7 @@ app.controller('databasesCtrl', function($scope, $http) {
 		$scope.table = table;
 		
 		$http({
-			url : "http://localhost/DataViewer/DataViewer/src/manager/Facade.php",
+			url : $scope.url,
 			method : "POST",
 			data: $.param({
 				service: $scope.service,

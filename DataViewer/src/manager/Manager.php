@@ -3,7 +3,7 @@
 require_once (__DIR__ . "\..\util\FactoryServiceParameters.php");
 require_once (__DIR__ . "\DatabasesManager.php");
 
-class Facade{
+class Manager{
     
     private $parameters;
     
@@ -28,30 +28,19 @@ class Facade{
         return $manager->consultData($this->parameters['user'], 
             $this->parameters['database'], $this->parameters['table']);
 //         return $manager->consultData('admin', 'data_viewer', 'databas');
-    }
-    
-    public function getMenu(){
-        $menu = array();
-        $menu['Conta'] = "http:\\\\localhost\DataViewer\DataViewerClient\html\account.php";
-        $menu['Bancos'] = "http:\\\\localhost\DataViewer\DataViewerClient\html\databases.php";
-        return $menu;
-    }
-    
-    
+    }  
     
 }
 
 try{
     
-    $facade = new Facade();
+    $facade = new Manager();
     $result = null;
     
     $service = $_POST['service'];
 //     $service = 'consultDatabases';
     
-    if($service === 'getMenu'){
-        $result = $facade->getMenu();
-    } else if($service === 'consultData'){
+    if($service === 'consultData'){
         $result = $facade->consultData();
     } else if($service === 'consultDatabases'){
         $result = $facade->consultDatabases();
@@ -68,7 +57,7 @@ try{
     }
     
 } catch(Exception $exception) {
-    echo $exception->getMessage();    
+    echo json_encode($exception->getMessage());    
 }
 
 ?>

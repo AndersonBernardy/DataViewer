@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 require_once(__DIR__ . "\DAO.php");
 
@@ -37,14 +37,3 @@ class DAODatabase extends DAO{
     }
     
 }
-
-// require_once(__DIR__ . "/FactoryConnection.php");
-
-// $dao = new DAODatabase();
-// $pr = $dao->getConnectionParameters('admin', 'dataview');
-// print_r($pr);
-// FactoryConnection::createConnection2($pr);
-
-
-
-
