@@ -1,42 +1,80 @@
 <?php
+require_once (__DIR__ . "\..\col\COLPermission.php");
+require_once (__DIR__ . "\..\col\COLDatabase.php");
+require_once (__DIR__ . "\..\dao\ConnectionFactory.php");
+require_once (__DIR__ . "\..\model\ConnectionParameters.php");
 
-require_once(__DIR__ . "\..\col\COLPermission.php");
-require_once(__DIR__ . "\..\col\COLTable.php");
+class DatabasesManager
+{
 
-
-class DatabasesManager{
-    
-    public function consultDatabases(string $username) : array {
-        
+    /**
+     *
+     * @param string $username
+     * @return array
+     */
+    public function consultDatabases(string $username): array
+    {
         $col = new COLPermission();
-        $permissionArray = $col->fecthPermissions($username);
+        $connection = ConnectionFactory::getDataViewerConnection();
+
+        $permissionArray = $col->fecthPermissions($connection, $username);
         return $permissionArray;
     }
 
-    public function consultTables(string $username, string $database){
-        $col = new COLTable();
-        $result = $col->fetchTables($username, $database);
+    /**
+     *
+     * @param string $username
+     * @param string $database
+     * @return array
+     */
+    public function consultTables(string $username, string $database): array
+    {
+        $colDatabase = new COLDatabase();
+        $connection = $this->getDatabaseConnection($username, $database);
+
+        $result = $colDatabase->fetchTables($connection);
         return $result;
     }
-    
-    public function consultData(string $username, string $database, string $table){
-        $col = new COLTable();
-        $result = $col->fetchData($username, $database, $table);
+
+    /**
+     *
+     * @param string $username
+     * @param string $database
+     * @param string $table
+     * @return array
+     */
+    public function consultData(string $username, string $database, string $table): array
+    {
+        $col = new COLDatabase();
+        $connection = $this->getDatabaseConnection($username, $database);
+
+        $result = $col->fetchData($connection, $table);
         return $result;
     }
-    
-    public function insertData(){
-        
+
+    public function insertData()
+    {}
+
+    public function updateData()
+    {}
+
+    public function deleteData()
+    {}
+
+    /**
+     *
+     * @param string $username
+     * @param string $database
+     * @return PDO
+     */
+    private function getDatabaseConnection(string $username, string $database): PDO
+    {
+        $dataViewerConnection = ConnectionFactory::getDataViewerConnection();
+        $colDatabase = new COLDatabase();
+        $connectionParameters = $colDatabase->getConnectionParameters($dataViewerConnection, $username, $database);
+        $connection = ConnectionFactory::createConnection($connectionParameters);
+        return $connection;
     }
-    
-    public function updateData(){
-        
-    }
-    
-    public function deleteData(){
-        
-    }
-    
 }
 
 ?>

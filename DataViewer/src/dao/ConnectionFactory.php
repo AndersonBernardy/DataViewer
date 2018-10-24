@@ -1,38 +1,41 @@
 <?php
 
-class ConnectionFactory{
-        
-    public static function createConnection($servertype, $servername, $port, $dbname, 
-        $username, $password, $charset = "utf8"){
+class ConnectionFactory
+{
 
-        $connectionString = "$servertype:" .
-                            "host=$servername;" .
-                            "port=$port;" .
-                            "dbname=$dbname;" .
-                            "charset=$charset";
-        
+    /**
+     *
+     * @param ConnectionParameters $connectionParameters
+     * @return PDO
+     */
+    public static function createConnection(ConnectionParameters $connectionParameters): PDO
+    {
+        $servertype = $connectionParameters->getServertype();
+        $host = $connectionParameters->getHost();
+        $port = $connectionParameters->getPort();
+        $dbname = $connectionParameters->getDbname();
+        $charset = $connectionParameters->getCharset();
+        $username = $connectionParameters->getUsername();
+        $password = $connectionParameters->getPassword();
+
+        $connectionString = "$servertype:host=$host;port=$port;dbname=$dbname;charset=$charset";
         $connection = new PDO($connectionString, $username, $password);
+
         $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-        return $connection;
-    }
-    
-    public static function createConnection2($connectionParameters){
-            
-        $servertype = $connectionParameters['servertype'];
-        $servername = $connectionParameters['servername'];
-        $port = $connectionParameters['port'];
-        $dbname = $connectionParameters['dbname'];
-        $charset = $connectionParameters['charset'];
-        $username = $connectionParameters['username'];
-        $password = $connectionParameters['password'];
-        
-        $connectionString = "$servertype:host=$servername;port=$port;dbname=$dbname;charset=$charset";
-        
-        $connection = new PDO($connectionString, $username, $password);
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+
         return $connection;
     }
 
+    /**
+     *
+     * @return PDO
+     */
+    public static function getDataViewerConnection(): PDO
+    {
+        $connectionParameters = new ConnectionParameters("mysql", "localhost", 3306, 
+            "data_viewer", "utf8", "root", "");
+        return ConnectionFactory::createConnection($connectionParameters);
+    }
 }
 
 ?>

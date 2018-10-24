@@ -11,6 +11,24 @@ class Permission implements JsonSerializable
 
     /**
      *
+     * @param string $dbname
+     * @param bool $selectPrivilege
+     * @param bool $insertPrivilege
+     * @param bool $updatePrivilege
+     * @param bool $deletePrivilege
+     */
+    public function __construct(string $dbname, bool $selectPrivilege, 
+        bool $insertPrivilege, bool $updatePrivilege, bool $deletePrivilege)
+    {
+        $this->setDbname($dbname);
+        $this->setSelectPrivilege($selectPrivilege);
+        $this->setInsertPrivilege($insertPrivilege);
+        $this->setUpdatePrivilege($updatePrivilege);
+        $this->setDeletePrivilege($deletePrivilege);
+    }
+
+    /**
+     *
      * @return string
      */
     public function getDbname(): string
@@ -58,7 +76,7 @@ class Permission implements JsonSerializable
      *
      * @param string $databaseName
      */
-    public function setDbname(string $dbname)
+    private function setDbname(string $dbname)
     {
         $this->dbname = $dbname;
     }
@@ -67,7 +85,7 @@ class Permission implements JsonSerializable
      *
      * @param bool $selectPrivilege
      */
-    public function setSelectPrivilege(bool $selectPrivilege)
+    private function setSelectPrivilege(bool $selectPrivilege)
     {
         $this->selectPrivilege = $selectPrivilege;
     }
@@ -76,7 +94,7 @@ class Permission implements JsonSerializable
      *
      * @param bool $insertPrivilege
      */
-    public function setInsertPrivilege(bool $insertPrivilege)
+    private function setInsertPrivilege(bool $insertPrivilege)
     {
         $this->insertPrivilege = $insertPrivilege;
     }
@@ -85,7 +103,7 @@ class Permission implements JsonSerializable
      *
      * @param bool $updatePrivilege
      */
-    public function setUpdatePrivilege(bool $updatePrivilege)
+    private function setUpdatePrivilege(bool $updatePrivilege)
     {
         $this->updatePrivilege = $updatePrivilege;
     }
@@ -94,7 +112,7 @@ class Permission implements JsonSerializable
      *
      * @param bool $deletePrivilege
      */
-    public function setDeletePrivilege(bool $deletePrivilege)
+    private function setDeletePrivilege(bool $deletePrivilege)
     {
         $this->deletePrivilege = $deletePrivilege;
     }
@@ -120,5 +138,4 @@ class Permission implements JsonSerializable
             . "<i>delete:</i> $this->deletePrivilege";
         return $string;
     }
-    
 }

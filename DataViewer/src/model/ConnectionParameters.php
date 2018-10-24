@@ -1,7 +1,8 @@
 <?php
 
-class ConnectionParameters {
-    
+class ConnectionParameters
+{
+
     private $servertype;
     private $host;
     private $port;
@@ -9,9 +10,20 @@ class ConnectionParameters {
     private $charset;
     private $username;
     private $password;
-    
-    public function __construct(string $servertype, string $host, int $port, string $dbname,
-        string $charset, string $username, string $password){
+
+    /**
+     *
+     * @param string $servertype
+     * @param string $host
+     * @param int $port
+     * @param string $dbname
+     * @param string $charset
+     * @param string $username
+     * @param string $password
+     */
+    public function __construct(string $servertype, string $host, int $port, 
+        string $dbname, string $charset, string $username, string $password)
+    {
         $this->setServertype($servertype);
         $this->setHost($host);
         $this->setPort($port);
@@ -20,8 +32,9 @@ class ConnectionParameters {
         $this->setUsername($username);
         $this->setPassword($password);
     }
-    
+
     /**
+     *
      * @return string
      */
     public function getServertype(): string
@@ -30,14 +43,16 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @return string
      */
-    public function getHost():string
+    public function getHost(): string
     {
         return $this->host;
     }
 
     /**
+     *
      * @return int
      */
     public function getPort(): int
@@ -46,6 +61,7 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @return string
      */
     public function getDbname(): string
@@ -54,6 +70,7 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @return string
      */
     public function getCharset(): string
@@ -62,6 +79,7 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @return string
      */
     public function getUsername(): string
@@ -70,6 +88,7 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @return string
      */
     public function getPassword(): string
@@ -78,6 +97,7 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @param string $servertype
      */
     private function setServertype(string $servertype)
@@ -86,6 +106,7 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @param string $host
      */
     private function setHost(string $host)
@@ -94,6 +115,7 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @param int $port
      */
     private function setPort(int $port)
@@ -102,6 +124,7 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @param string $dbname
      */
     private function setDbname(string $dbname)
@@ -110,6 +133,7 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @param string $charset
      */
     private function setCharset(string $charset)
@@ -118,6 +142,7 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @param string $username
      */
     private function setUsername(string $username)
@@ -126,11 +151,11 @@ class ConnectionParameters {
     }
 
     /**
+     *
      * @param string $password
      */
     private function setPassword(string $password)
     {
         $this->password = $password;
     }
-
 }
