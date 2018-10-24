@@ -18,9 +18,13 @@ app.controller('databasesCtrl', function($scope, $http) {
 			}),
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(function(response) {
-			$scope.databaseArray = response.data;
-			console.log($scope.databaseArray);
-			console.log(response.statusText);
+			if(response.data.status === "OK"){
+				$scope.databaseArray = response.data.result;
+			}
+			else {
+				console.log(response.data.status + "\n" + response.data.result);
+				alert("ERRO");
+			}
 		}, 
 		function(response) {
 			$scope.msg = response.statusText;
@@ -33,8 +37,6 @@ app.controller('databasesCtrl', function($scope, $http) {
 		$scope.service = 'consultTables';
 		$scope.database = database;
 		
-		console.log(database);
-		
 		$http({
 			url : $scope.url,
 			method : "POST",
@@ -45,8 +47,13 @@ app.controller('databasesCtrl', function($scope, $http) {
 			}),
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(function(response) {
-			$scope.tableArray = response.data;
-			console.log($scope.tableArray);
+			if(response.data.status === "OK"){
+				$scope.tableArray = response.data.result;
+			}
+			else {
+				console.log(response.data.status + "\n" + response.data.result);
+				alert("ERRO");
+			}
 		}, 
 		function(response) {
 			console.log(response.statusText);
@@ -70,8 +77,13 @@ app.controller('databasesCtrl', function($scope, $http) {
 			}),
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).then(function(response) {
-			$scope.dataArray = response.data;
-			console.log($scope.dataArray);
+			if(response.data.status === "OK"){
+				$scope.dataArray = response.data.result;
+			}
+			else {
+				console.log(response.data.status + "\n" + response.data.result);
+				alert("ERRO");	
+			}
 		}, 
 		function(response) {
 			console.log(response.statusText);
@@ -80,4 +92,5 @@ app.controller('databasesCtrl', function($scope, $http) {
 	}
 	
 	$scope.consultDatabases();
+	
 });

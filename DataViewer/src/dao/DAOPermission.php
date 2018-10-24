@@ -51,6 +51,7 @@ class DAOPermission extends DAO
                     permission.delete_privilege     
                 FROM user, databas, permission
                 WHERE user.username = ?
+                    && permission.select_privilege = 1
                     && permission.id_user = user.id_user
                     && permission.id_database = databas.id_database;";
         

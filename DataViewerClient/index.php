@@ -48,6 +48,13 @@
         color: white;
     }
 
+
+    .btn-custom {
+        background-color: white;
+        color: inherit;
+        border-color: black;     
+    }
+
 </style>
 
 
@@ -58,7 +65,6 @@
 	<div class="container">
 		
 		<div class="container">
-			<h1>Data Viewer</h1>
 		</div>
 		
 		<div class="container">
@@ -73,7 +79,6 @@
 		<div data-ng-view></div>
 		
 		<div class="container">
-			<h1>Footer</h1>
 		</div>
 	
 	</div>

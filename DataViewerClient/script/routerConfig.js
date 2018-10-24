@@ -1,10 +1,10 @@
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        templateUrl : "html/home.php"
+        templateUrl : "html/home.html"
     })
     .when("/databases", {
-        templateUrl : "html/databases.php",
+        templateUrl : "html/databases.html",
         controller : "databasesCtrl"
     })
 });

@@ -2,14 +2,14 @@
 	
 	<div class="container btn-group-vertical btn-group-lg col-md-2">
 		<h3 style="text-align:center">Bancos</h3>
-		<button type="button" class="btn btn-info"
+		<button type="button" class="btn btn-custom"
 			data-ng-click="consultTables(this.database.dbname)"
 			data-ng-repeat="database in databaseArray">{{database.dbname}}</button>
 	</div>
 	
 	<div class="container btn-group-vertical btn-group-lg col-md-2">
 		<h3 style="text-align:center">Tabelas</h3>
-		<button type="button" class="btn btn-info"
+		<button type="button" class="btn btn-custom	"
 			data-ng-click="consultData(this.table)"
 			data-ng-repeat="table in tableArray">{{table}}</button>
 	</div>

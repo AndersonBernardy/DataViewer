@@ -21,8 +21,11 @@ class ConnectionFactory
         $connectionString = "$servertype:host=$host;port=$port;dbname=$dbname;charset=$charset";
         $connection = new PDO($connectionString, $username, $password);
 
-        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+        if($connection === null){
+            throw new Exception("Erro ao conectar com o banco de dados.");
+        }
         return $connection;
     }
 
